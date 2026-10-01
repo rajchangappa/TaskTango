@@ -3,35 +3,114 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TaskTango | Master your day, one task at a time</title>
+    <meta name="theme-color" content="#f7f4ff" />
+    <meta
+      name="description"
+      content="A simple place to keep track of the things you need to do."
+    />
+    <title>TaskTango | Your daily to-do list</title>
     <link rel="stylesheet" href="./dist/output.css" />
     <script type="module" src="./src/app.js"></script>
   </head>
-  <body class="bg-gray-200">
-    <header class="w-full flex flex-col gap-2 bg-gray-100 p-2 md:p-6 lg:p-8">
-      <strong class="text-2xl font-bold text-gray-500">TaskTango</strong>
-      <p class="text-gray-400 text-xs md:text-sm lg:text-lg">
-        Stay on top of your goals with instant filtering and automatic saving.
-        Organize your workflow effortlessly without losing a beat.
-      </p>
+  <body
+    class="min-h-screen bg-[radial-gradient(ellipse_at_80%_0%,rgba(226,215,255,0.72),transparent_35rem),linear-gradient(155deg,#fbfaff_0%,#f4f0fc_55%,#faf8ff_100%)] font-sans text-[#302b3a] antialiased"
+  >
+    <header class="border-b border-[#e9e4ef] bg-white/65">
+      <div
+        class="mx-auto flex min-h-[76px] max-w-5xl items-center justify-between gap-5 px-5 sm:px-8"
+      >
+        <a
+          class="inline-flex items-center gap-3 text-[17px] font-semibold text-[#39314a] no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8c74bd]"
+          href="./"
+          aria-label="TaskTango home"
+        >
+          <span
+            class="grid size-9 place-items-center rounded-[11px] bg-[#e9e1ff] text-base font-semibold text-[#684fa8]"
+            aria-hidden="true"
+            >T</span
+          >
+          <span>TaskTango</span>
+        </a>
+        <p class="hidden text-right text-[13px] text-[#716a7d] sm:block">
+          A little more room for what matters today.
+        </p>
+      </div>
     </header>
-    <!-- Main Content -->
-    <main class="w-full flex flex-col bg-gray-100">
-      <section class="w-full h-fit p-2 md:p-6 lg:p-8">
-        <form id="add-task-form" class="w-full flex flex-col md:flex-row gap-1">
+    <main class="mx-auto max-w-5xl px-5 pb-24 pt-14 sm:px-8 sm:pt-20 lg:pt-24">
+      <section class="mb-12 max-w-3xl sm:mb-16" aria-labelledby="page-title">
+        <p
+          class="mb-2 lg:mb-4 text-[11px] font-semibold tracking-[0.14em] text-[#705b9b]"
+        >
+          MAKE SPACE FOR TODAY
+        </p>
+        <h1
+          id="page-title"
+          class="font-display font-medium leading-[1.08] text-[#30283f] text-2xl md:text-3xl lg:text-6xl"
+        >
+          What needs doing?
+        </h1>
+        <p
+          class="mt-2 max-w-xl text-base leading-7 text-[#686273] sm:text-lg sm:leading-8"
+        >
+          Keep the small things moving and the important things in view.
+        </p>
+      </section>
+
+      <section class="max-w-4xl" aria-label="Add a task">
+        <form
+          id="add-task-form"
+          class="flex flex-col gap-3 border-b border-[#ded7e8] pb-5 sm:flex-row sm:items-center"
+        >
           <input
             type="text"
             id="task-form-input"
-            placeholder="Add a new task..."
-            class="p-3 rounded-md border border-gray-300 flex-1 lg:w-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base lg:text-lg"
+            placeholder="e.g. Pick up groceries on the way home"
+            aria-label="Task details"
+            autocomplete="off"
+            class="min-h-14 min-w-0 flex-1 rounded-lg border border-transparent bg-white/65 px-4 text-[15px] text-[#302b3a] shadow-[0_5px_20px_rgba(54,39,80,0.04)] placeholder:text-[#81798e] focus-visible:border-[#c9b9e5] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8c74bd] sm:bg-white/75"
           />
           <button
             type="submit"
-            class="py-1 px-4 bg-gray-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            class="inline-flex min-h-14 items-center justify-center rounded-lg bg-[#6b5595] px-7 text-sm font-semibold text-white shadow-[0_6px_16px_rgba(74,55,111,0.15)] transition-colors hover:bg-[#594580] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8c74bd]"
           >
-            Add Task
+            Add task
           </button>
         </form>
+      </section>
+
+      <section class="mt-16 max-w-4xl sm:mt-20" aria-labelledby="tasks-heading">
+        <div
+          class="mb-5 flex flex-col gap-4 border-b border-[#ded7e8] pb-4 sm:flex-row sm:items-end sm:justify-between"
+        >
+          <div>
+            <h2
+              id="tasks-heading"
+              class="text-2xl font-semibold text-[#393246]"
+            >
+              Tasks
+            </h2>
+          </div>
+          <div
+            class="flex items-center justify-between gap-3 text-xs text-[#716a7d] sm:justify-start"
+          >
+            <label for="task-sort" class="shrink-0">Sort by</label>
+            <select
+              id="task-sort"
+              name="task-sort"
+              class="min-h-10 min-w-0 max-w-64 rounded-lg border border-[#ded7e8] bg-white/80 px-3 text-xs text-[#484153] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8c74bd]"
+            >
+              <option value="title-asc">Name, A to Z</option>
+              <option value="title-desc">Name, Z to A</option>
+              <option value="created-newest">Created, newest first</option>
+              <option value="created-oldest">Created, oldest first</option>
+            </select>
+          </div>
+        </div>
+        <ul
+          id="task-list"
+          class="grid list-none gap-3 p-0"
+          aria-live="polite"
+        ></ul>
       </section>
     </main>
   </body>

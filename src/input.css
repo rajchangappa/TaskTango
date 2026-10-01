@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-button,
-input {
-  outline: none;
-  transition: all 0.2s ease-in-out;
+@theme {
+  --font-sans: "Avenir Next", "Segoe UI", sans-serif;
+  --font-display:
+    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }

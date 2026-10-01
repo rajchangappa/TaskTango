@@ -1,10 +1,12 @@
-console.log("-- APP CONNECTED --");
 import createDate from "./scripts/createDate.js";
+import displayTasks from "./scripts/displayTasks.js";
+
+const STORAGE_KEY = "Saved Tasks";
 
 // TASK CLASS
 class Task {
   constructor(title, createdDate) {
-    this.id = crypto.randomUUID().slice(0, 6);
+    this.id = crypto.randomUUID();
     this.title = title;
     this.createdDate = createdDate;
     this.completed = false;
@@ -15,13 +17,40 @@ class Task {
 const newTaskForm = document.getElementById("add-task-form");
 const newTaskInput = document.getElementById("task-form-input");
 
-const allTasks = JSON.parse(localStorage.getItem("Saved Tasks")) || [];
+const loadTasks = () => {
+  try {
+    const savedTasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    return Array.isArray(savedTasks) ? savedTasks : [];
+  } catch {
+    return [];
+  }
+};
+
+let allTasks = loadTasks();
+
+const saveAndRenderTasks = () => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(allTasks));
+  displayTasks(allTasks, deleteTask, toggleTask);
+};
+
+const deleteTask = (taskId) => {
+  allTasks = allTasks.filter((task) => task.id !== taskId);
+  saveAndRenderTasks();
+};
+
+const toggleTask = (taskId) => {
+  const task = allTasks.find((item) => item.id === taskId);
+  if (!task) return;
+
+  task.completed = !task.completed;
+  saveAndRenderTasks();
+};
 
 // EVENT LISTENERS
 newTaskForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (newTaskInput.value.trim() === "") {
-    alert("Please enter a task.");
+    alert("Add a task before saving.");
     return;
   }
 
@@ -31,10 +60,9 @@ newTaskForm.addEventListener("submit", (e) => {
   const newTask = new Task(taskTitle, createdDate);
 
   allTasks.push(newTask);
-  localStorage.setItem("Saved Tasks", JSON.stringify(allTasks));
+  saveAndRenderTasks();
 
   newTaskForm.reset();
-  console.log("All tasks:", allTasks);
 });
 
-console.log("All tasks:", allTasks);
+displayTasks(allTasks, deleteTask, toggleTask);
