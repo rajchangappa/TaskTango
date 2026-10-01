@@ -1,11 +1,13 @@
 const createDate = () => {
-  return new Intl.DateTimeFormat("en", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
+  const date = new Date();
+  const options = { day: "numeric", month: "short", year: "numeric" };
+  const time = date.toLocaleTimeString([], {
+    hour: "2-digit",
     minute: "2-digit",
-  }).format(new Date());
+    hour12: true,
+  });
+
+  return `${date.toLocaleDateString("en-US", options)} at ${time}`;
 };
 
 export default createDate;

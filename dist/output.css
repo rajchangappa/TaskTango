@@ -253,6 +253,9 @@
   .min-h-screen {
     min-height: 100vh;
   }
+  .w-fit {
+    width: fit-content;
+  }
   .w-full {
     width: 100%;
   }
@@ -538,6 +541,9 @@
   }
   .text-white {
     color: var(--color-white);
+  }
+  .lowercase {
+    text-transform: lowercase;
   }
   .line-through {
     text-decoration-line: line-through;

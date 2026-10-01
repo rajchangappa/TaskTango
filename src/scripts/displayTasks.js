@@ -1,6 +1,6 @@
 const displayTasks = (tasks, onDelete, onToggle) => {
   const taskList = document.getElementById("task-list");
-  taskList.replaceChildren();
+  taskList.innerHTML = "";
 
   if (tasks.length === 0) {
     const emptyMessage = document.createElement("li");
@@ -16,7 +16,6 @@ const displayTasks = (tasks, onDelete, onToggle) => {
     const taskItem = document.createElement("li");
     taskItem.className =
       "flex min-w-0 flex-col gap-4 rounded-xl border border-[#e7e1ed] bg-white/80 px-5 py-5 shadow-[0_6px_24px_rgba(54,39,80,0.04)] transition-colors sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-6";
-    taskItem.dataset.completed = String(Boolean(task.completed));
 
     const taskDetails = document.createElement("div");
     taskDetails.className = "min-w-0";
@@ -29,7 +28,7 @@ const displayTasks = (tasks, onDelete, onToggle) => {
 
     const createdDate = document.createElement("span");
     createdDate.className = "text-xs text-[#716a7d]";
-    createdDate.textContent = `Added ${task.createdDate}`;
+    createdDate.textContent = `Created at ${task.createdDate}`;
 
     taskDetails.append(taskTitle, createdDate);
 
@@ -45,10 +44,7 @@ const displayTasks = (tasks, onDelete, onToggle) => {
     completedButton.textContent = task.completed
       ? "Completed"
       : "Mark complete";
-    completedButton.setAttribute(
-      "aria-pressed",
-      String(Boolean(task.completed)),
-    );
+    completedButton.setAttribute("aria-pressed", task.completed);
     completedButton.addEventListener("click", () => onToggle(task.id));
 
     const deleteButton = document.createElement("button");
