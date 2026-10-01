@@ -16,6 +16,23 @@
       </p>
     </header>
     <!-- Main Content -->
-    <main class="w-full flex flex-col p-2 md:p-6 lg:p-8 bg-gray-100"></main>
+    <main class="w-full flex flex-col bg-gray-100">
+      <section class="w-full h-fit p-2 md:p-6 lg:p-8">
+        <form id="add-task-form" class="w-full flex flex-col md:flex-row gap-1">
+          <input
+            type="text"
+            id="task-form-input"
+            placeholder="Add a new task..."
+            class="p-3 rounded-md border border-gray-300 flex-1 lg:w-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm md:text-base lg:text-lg"
+          />
+          <button
+            type="submit"
+            class="py-1 px-4 bg-gray-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Add Task
+          </button>
+        </form>
+      </section>
+    </main>
   </body>
 </html>
